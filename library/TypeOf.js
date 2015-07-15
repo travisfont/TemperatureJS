@@ -1,6 +1,6 @@
 var TypeOf = {
 
-    isFunction: function(obj)
+    isFunction: function (obj)
     {
         if (typeof obj === 'function')
         {
