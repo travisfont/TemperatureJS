@@ -33,6 +33,7 @@ if (typeof browser !== 'object')
 }
 */
 
+// ajax autoloader
 function load(url)
 {
     var ajax = new XMLHttpRequest();
