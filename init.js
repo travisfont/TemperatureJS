@@ -42,13 +42,14 @@ function load(url)
     ajax.onreadystatechange = function ()
     {
         var script = ajax.response || ajax.responseText;
+
         if (ajax.readyState === 4)
         {
             switch (ajax.status)
             {
                 case 200:
-                    eval.apply( window, [script] );
-                    if(DISPLAY_LIBRARY_LOAD_CONSOLE === true)
+                    eval.apply(window, [script]);
+                    if (DISPLAY_LIBRARY_LOAD_CONSOLE === true)
                     {
                         console.log("library loaded: ", url);
                     }
@@ -76,6 +77,7 @@ TJS.import = function (libary)
             lib = LIBRARY_PATH + 'class/browser.js';
             break;
     }
+
     s.push(lib);
     load(lib);
 };
