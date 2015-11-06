@@ -1,3 +1,32 @@
+function load(url)
+{
+    var ajax = new XMLHttpRequest();
+
+    ajax.open('GET', url, false);
+    ajax.onreadystatechange = function ()
+    {
+        var script = ajax.response || ajax.responseText;
+
+        if (ajax.readyState === 4)
+        {
+            switch (ajax.status)
+            {
+                case 200:
+                    eval.apply(window, [script]);
+                    if (DISPLAY_LIBRARY_LOAD_CONSOLE === true)
+                    {
+                        console.log("library loaded: ", url);
+                    }
+                    break;
+                default:
+                    console.log("ERROR: library not loaded: ", url);
+            }
+        }
+    };
+
+    ajax.send(null);
+}
+
 function loadScript(url, callback)
 {
     // Adding the script tag to the head as suggested before
@@ -25,6 +54,6 @@ var body = dom.createElementNS('http://www.w3.org/1999/xhtml', 'body');
 // set timeout is needed because document.body is created after the current continuation finishes
 setTimeout(function ()
 {
+    loadScript('system.js', main);
     loadScript('init.js', main);
-
 }, 0);

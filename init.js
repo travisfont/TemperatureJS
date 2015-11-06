@@ -1,4 +1,4 @@
-// Author: Travis van der Font - Version 0.0.3
+// Author: Travis van der Font - Version 0.0.4
 
 var
     LIBRARY_PATH = '', // LIBRARY_PATH = 'ClausenJS/'
@@ -32,35 +32,6 @@ if (typeof browser !== 'object')
     load(LIBRARY_PATH + 'class/browser.js');
 }
 */
-
-// ajax autoloader
-function load(url)
-{
-    var ajax = new XMLHttpRequest();
-
-    ajax.open('GET', url, false);
-    ajax.onreadystatechange = function ()
-    {
-        var script = ajax.response || ajax.responseText;
-
-        if (ajax.readyState === 4)
-        {
-            switch (ajax.status)
-            {
-                case 200:
-                    eval.apply(window, [script]);
-                    if (DISPLAY_LIBRARY_LOAD_CONSOLE === true)
-                    {
-                        console.log("library loaded: ", url);
-                    }
-                    break;
-                default:
-                    console.log("ERROR: library not loaded: ", url);
-            }
-        }
-    };
-    ajax.send(null);
-}
 
 var TJS = TJS || {};
 TJS.import = function (libary)
