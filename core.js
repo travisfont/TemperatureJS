@@ -30,10 +30,11 @@ function load(url)
 function loadScript(url, callback)
 {
     // Adding the script tag to the head as suggested before
-    var  head = document.getElementsByTagName('head')[0];
+    var   head = document.getElementsByTagName('head')[0];
     var script = document.createElement('script');
-        script.type = 'text/javascript';
-        script.src  = url;
+        script.type  = 'text/javascript';
+        script.src   = url;
+        script.async = true;
 
         // Then bind the event to the callback function.
         // There are several events for cross browser compatibility.
@@ -52,8 +53,31 @@ var body = dom.createElementNS('http://www.w3.org/1999/xhtml', 'body');
            dom.documentElement.appendChild(body);
 
 // set timeout is needed because document.body is created after the current continuation finishes
+/*
 setTimeout(function ()
 {
     loadScript('system.js', main);
     loadScript('init.js', main);
 }, 0);
+*/
+
+downloadJSAtOnload = function ()
+{
+    loadScript('system.js', main);
+    loadScript('init.js', main);
+};
+
+if (window.addEventListener)
+{
+    window.addEventListener('load', downloadJSAtOnload, false);
+
+}
+else if (window.attachEvent)
+{
+    window.attachEvent('onload', downloadJSAtOnload);
+}
+else
+{
+    window.onload = downloadJSAtOnload;
+}
+
