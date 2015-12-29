@@ -1,0 +1,29 @@
+<script src="core.js"></script>
+<script defer>
+TJS.services(
+        'code.jquery.com/jquery-1.9.1.js'
+);
+
+TJS.include(
+        'createObject',
+        'createButton',
+        'printCSS'
+);
+
+function main()
+{
+    setTitle('Test Example Page');
+
+    printCSS('body { background-color: #cccccc; }');
+
+    setHTML('Hi');
+    setHTML('<p>blabla. yes</P>');
+    setHTML('<div id="targetText">looking good.</div>');
+    setHTML('<br/><br/>');
+
+    createButton('testing test');
+    createObject('div', 'pretty wicked!');
+
+    //setHTML('<br/><br/>');
+}
+</script>
