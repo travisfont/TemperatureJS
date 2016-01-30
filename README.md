@@ -7,11 +7,17 @@ Currently TemperatureJS is consider a micro experimental framework in JavaScript
 Compatible and extendible to most additional frameworks as plugins.
 TemperatureJS helps improve by optimizing the payload delivered to browsers through it's module architecture. Only resources that are required to be loaded through the browser device will requests when utilized by the application. In addition the framework supports a special unique build in datatype getter / setter environment to make application development stricter.
 
-Packages:
+To use each package it must be loaded. TemperatureJS supports common functionalities from many of the packages.
 
+Core Packages:
+
+- jQuery
+- Underscore.js 1.8
+- php.js
+- Moment.js
 - SugarJS v1.4.1
 - CryptoJS v3.0.2
-- jQuery
+- lodash 4
 - json2.js
 
 ----------------------------
@@ -32,4 +38,4 @@ TJS.import('Constant');  // loads constant function
 
 ![Chrome](https://raw.github.com/alrra/browser-logos/master/chrome/chrome_48x48.png) | ![Firefox](https://raw.github.com/alrra/browser-logos/master/firefox/firefox_48x48.png) | ![IE](https://raw.github.com/alrra/browser-logos/master/internet-explorer/internet-explorer_48x48.png) | ![Opera](https://raw.github.com/alrra/browser-logos/master/opera/opera_48x48.png) | ![Safari](https://raw.github.com/alrra/browser-logos/master/safari/safari_48x48.png)
 --- | --- | --- | --- | --- |
-Latest ✔ | Latest ✔ | 9+ ✔ | Latest ✔ | 6.1+ ✔ |
+Latest ✔ | 3.6+ ✔ | 9+ ✔ | Latest ✔ | 6.1+ ✔ |
