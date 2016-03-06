@@ -5,7 +5,7 @@ var ExtMath = {
     getDegToRad: function(deg)
     {
         return deg * (Math.PI / 180);
-    }
+    },
     
     // Haversine formula - calculates the distance between two points (coordinates)
     getGreatCircleDistance: function(lat1, lon1, lat2, lon2)
@@ -17,16 +17,26 @@ var ExtMath = {
                 (1 - c((lon2 - lon1) * p))/2;
 
         return 12742 * Math.asin(Math.sqrt(a)); // 2 * R; R = 6371 km
-    }
+    },
 
-    random: function (maxRange)
+    getRandom: function (maxRange)
     {
         return Math.floor((Math.random() * maxRange) + 1);
-    }
+    },
 
     randomEvenOnly: function (maxRange)
     {
         return Math.floor(Math.random() * maxRange / 2) * 2;
+    },
+
+    fibonacci: function (num, memo)
+    {
+        memo = memo || {};
+
+        if (memo[num]) return memo[num];
+        if (num <= 1)  return 1;
+
+        return memo[num] = this.fibonacci(num - 1, memo) + this.fibonacci(num - 2, memo);
     }
 
 };
