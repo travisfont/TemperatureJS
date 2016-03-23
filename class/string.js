@@ -2,14 +2,16 @@ var string =
 {
     generate_password : function ()
     {
-        var length = 8,
-            charset = "abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
-            retVal = "";
+        var length  = 8,
+            charset = 'abcdefghijklnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789',
+            value   = '';
+            
         for (var i = 0, n = charset.length; i < length; ++i)
         {
-            retVal += charset.charAt(Math.floor(Math.random() * n));
+            value += charset.charAt(Math.floor(Math.random() * n));
         }
-        return retVal;
+        
+        return value;
     },
     
     strip_non_numeric : function (string)
@@ -22,22 +24,30 @@ var string =
     decimal : function (string)
     {
         return string.replace(/[^\d.-]/g, '');
-    }
+    },
+    
+    reverse: function (string)
+    {
+        return (string === '') ? '' : string.split('').reverse().join('');
+    },
 
-    /*
-     *	ADVANCED STRING OPERATIONS;
-
-    String.prototype.trim = function() {
-    return this.replace(/^\s+|\s+$/g,"");
+    trim = function(string)
+    {
+        return (string === '') ? '' : string.replace(/^\s+|\s+$/g,"");
+    },
+    
+    ltrim = function(string)
+    {
+        return (string === '') ? '' : string.replace(/^\s+/,"");
+    },
+    
+    rtrim = function(string)
+    {
+        return (string === '') ? '' : string.replace(/\s+$/,"");
+    },
+    
+    contains = function(string)
+    {
+        return (string === '') ? '' : string.indexOf(string) != -1;
     }
-    String.prototype.ltrim = function() {
-        return this.replace(/^\s+/,"");
-    }
-    String.prototype.rtrim = function() {
-        return this.replace(/\s+$/,"");
-    }
-    String.prototype.contains = function(it) {
-        return this.indexOf(it) != -1;
-    }
-     */
 }
