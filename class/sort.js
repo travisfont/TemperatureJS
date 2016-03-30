@@ -68,7 +68,7 @@ var sort =
             }
         }
 
-        return quicksortBasic(lesser).concat(pivot, quicksortBasic(greater));
+        return this.quick(lesser).concat(pivot, this.quick(greater));
     }
     
     _gaps = [701, 301, 132, 57, 23, 10, 4, 1],
@@ -88,4 +88,6 @@ var array = [9, 2, 5, 6, 4, 3, 7, 10, 1, 8];
 console.log(sort.bubble(array.slice())); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 
 console.log(sort.shell(array)); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+
+console.log(sort.quick(array.slice())); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 */
