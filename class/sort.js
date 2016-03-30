@@ -69,7 +69,41 @@ var sort =
         }
 
         return this.quick(lesser).concat(pivot, this.quick(greater));
-    }
+    },
+    
+    // Merge Sorting: top-down implementation
+    merge: function (array)
+    {
+        if (array.length < 2)
+        {
+            return array;
+        }
+
+        var middle = Math.floor(array.length / 2);
+        var left   = array.slice(0, middle);
+        var right  = array.slice(middle);
+
+        return this._merge_topdown(this.merge(left), this.merge(right));
+    },
+    
+    _merge_topdown: function (left, right)
+    {
+        var array = [];
+
+        while (left.length && right.length)
+        {
+            if (left[0] < right[0])
+            {
+                array.push(left.shift());
+            }
+            else
+            {
+                array.push(right.shift());
+            }
+        }
+
+        return array.concat(left.slice()).concat(right.slice());
+    },
     
     _gaps = [701, 301, 132, 57, 23, 10, 4, 1],
     
@@ -90,4 +124,6 @@ console.log(sort.bubble(array.slice())); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 console.log(sort.shell(array)); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 
 console.log(sort.quick(array.slice())); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+
+console.log(sort.merge(array.slice())); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 */
