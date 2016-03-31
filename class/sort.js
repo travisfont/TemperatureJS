@@ -45,7 +45,7 @@ var sort =
     },
     
     // Quick Sorting
-    quick function (array)
+    quick: function (array)
     {
         if (array.length < 2)
         {
@@ -70,6 +70,25 @@ var sort =
 
         return this.quick(lesser).concat(pivot, this.quick(greater));
     },
+    
+    insertion: function (array)
+    {
+        for (var i = 0; i < array.length; i++)
+        {
+            var temp = array[i];
+            var j    = i - 1;
+            
+            while (j >= 0 && array[j] > temp)
+            {
+                array[j + 1] = array[j];
+                j--;
+            }
+            
+            array[j + 1] = temp;
+        }
+        
+        return array;
+    }
     
     // Merge Sorting: top-down implementation
     merge: function (array)
@@ -126,4 +145,6 @@ console.log(sort.shell(array)); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 console.log(sort.quick(array.slice())); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 
 console.log(sort.merge(array.slice())); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+
+console.log(sort.insertion(array)); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 */
