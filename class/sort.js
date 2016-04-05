@@ -71,6 +71,29 @@ var sort =
         return this.quick(lesser).concat(pivot, this.quick(greater));
     },
     
+    selection: function (array)
+    {
+        for (var i = 0; i < array.length; i++)
+        {
+            var min = i;
+            
+            for (var j = i + 1; j < array.length; j++)
+            {
+                if (array[j] < array[min])
+                {
+                    min = j;
+                }
+            }
+            
+            if (i !== min)
+            {
+                swap(array, i, min);
+            }
+        }
+        
+        return array;
+    },
+    
     insertion: function (array)
     {
         for (var i = 0; i < array.length; i++)
@@ -147,4 +170,6 @@ console.log(sort.quick(array.slice())); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 console.log(sort.merge(array.slice())); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 
 console.log(sort.insertion(array)); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
+
+console.log(sort.selection(array)); // => [ 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 ]
 */
