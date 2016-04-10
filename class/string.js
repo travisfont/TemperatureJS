@@ -19,6 +19,14 @@ var string =
         return string.replace(/\D/g,'');
     },
     
+    function ucwords(str)
+    {
+        return str.toLowerCase().split(' ').map(function(word)
+        {
+            return word.replace(word[0], word[0].toUpperCase());
+        }).join(' ');
+    },
+    
     // displays only floats (decimal) numbers
     // ideal for stripping string for currency
     decimal : function (string)
