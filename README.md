@@ -17,6 +17,7 @@ Core Packages:
 - CryptoJS
 - lodash 4
 - json2.js
+- validate.js
 
 ----------------------------
 
