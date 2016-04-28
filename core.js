@@ -13,7 +13,7 @@ function load(url)
             {
                 case 200:
                     eval.apply(window, [script]);
-                    if (DISPLAY_LIBRARY_LOAD_CONSOLE === true)
+                    if (typeof DISPLAY_LIBRARY_LOAD_CONSOLE !== 'undefined' && DISPLAY_LIBRARY_LOAD_CONSOLE === true)
                     {
                         console.log("library loaded: ", url);
                     }
@@ -50,7 +50,10 @@ function loadScript(url, callback)
 }
 
 var TJS = TJS || {};
-TJS.import = function (libary)
+var bootloaders = [];
+var includes = [];
+
+TJS.import = function (libary, version)
 {
     switch (libary)
     {
@@ -63,32 +66,39 @@ TJS.import = function (libary)
         case 'Browser':
             lib = LIBRARY_PATH + 'class/browser.js';
             break;
+        case 'jQuery':
+            lib = LIBRARY_PATH + 'plugins/jquery.js';
+
     }
 
-    s.push(lib);
+    bootloaders.push(lib);
     load(lib);
 };
 
-TJS.services = function (libary)
+TJS.services = function ()
 {
-
+    for (var i = 0; i < arguments.length; i++)
+    {
+        // str replace and remove 'http:, https:, //
+        load('//'+arguments[i]);
+    }
 }
 
-TJS.include = function (libary)
+TJS.include = function ()
 {
-
+    includes = arguments;
 }
 
 var dom = document.implementation.createDocument('http://www.w3.org/1999/xhtml', 'html', null);
-dom.documentElement.setAttributeNS('http://www.w3.org/XML/1998/namespace', 'xml:lang', 'en');
+    dom.documentElement.setAttributeNS('http://www.w3.org/XML/1998/namespace', 'xml:lang', 'en');
 
 //var body = dom.createElement("body");
 var body = dom.createElementNS('http://www.w3.org/1999/xhtml', 'body');
-dom.documentElement.appendChild(body);
+           dom.documentElement.appendChild(body);
 
 // set timeout is needed because document.body is created after the current continuation finishes
 setTimeout(function ()
 {
-    loadScript('init.js');
+    loadScript('initizer.js');
     loadScript('system.js', main);
 }, 0);

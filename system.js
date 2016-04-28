@@ -1,5 +1,27 @@
-function printCSS(inline_css)
-{;
+if (bootloaders.length > 0)
+{
+    for (i = 0; i < bootloaders.length; i++)
+    {
+        load(bootloaders[i]);
+    }
+}
+
+// loads json plug (for older supportive/browsers)
+if (typeof JSON !== 'object')
+{
+    load(LIBRARY_PATH + 'plugins/json2.js');
+}
+
+/*
+ if (typeof browser !== 'object')
+ {
+ load(LIBRARY_PATH + 'class/browser.js');
+ }
+ */
+
+
+function setHeaderCSS(inline_css)
+{
     css    = [];
     css[0] = inline_css;
 
