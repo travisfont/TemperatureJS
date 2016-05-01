@@ -5,9 +5,11 @@ TJS.services(
 );
 
 TJS.include(
+        'setTitle',
+        'setHeaderCSS',
         'createObject',
         'createButton',
-        'printCSS'
+        'function_exists'
 );
 
 function main()
@@ -18,7 +20,7 @@ function main()
 
     setHTML('Hi');
     setHTML('<p>blabla. yes</P>');
-    setHTML('<div id="targetText">looking good.</div>');
+    setHTML('<div id="targetText"><a href="#/test">click me</a></div>');
     setHTML('<br/><br/>');
 
     createButton('testing test');
@@ -26,4 +28,5 @@ function main()
 
     //setHTML('<br/><br/>');
 }
+
 </script>
