@@ -1,4 +1,4 @@
-function search_to_json()
+function searchJSON()
 {
     var rep = {'?':'{"','=':'":"','&':'","'};
     var   s = document.location.search.replace(/[\?\=\&]/g, function (r)

@@ -1,4 +1,4 @@
-function function_exists(func)
+function existFunction(func)
 {
     return (eval('typeof '+func) === 'function' || false);
 }
@@ -10,12 +10,12 @@ function TS1()
     alert('TS1');
 }
 
-alert(function_exists('TS1')); // alerts true
-alert(function_exists('TS2')); // alerts false
+alert(existFunction('TS1')); // alerts true
+alert(existFunction('TS2')); // alerts false
 
 // statement example :-p
 
-if (function_exists('TS1'))
+if (existFunction('TS1'))
 {
    TS1();
 }

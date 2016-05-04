@@ -5,7 +5,7 @@
  * @return {Object}
  */
  
-function trimHtml(html, options)
+function trimHTML(html, options)
 {
     options = options || {};
 
@@ -26,7 +26,7 @@ function trimHtml(html, options)
         tagMatch,
         tagName,
         tagStack = [],
-        more = false;
+        more    = false;
 
     for (var i = 0; i < arr.length; i++)
     {
@@ -80,7 +80,7 @@ function trimHtml(html, options)
 
                 if (moreLink)
                 {
-                    row += '<a href="' + moreLink + '" style="display:inline">»</a>';
+                    row += '<a href="' + moreLink + '" style="display:inline">ï¿½</a>';
                 }
 
                 sum  = limit;
@@ -163,7 +163,7 @@ voluptate velit esse cillum dolore eu fugiat nulla pariatur. </p><p>Excepteur
 sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
 anim id est laborum.</p></div>';
 
-var trim = trimHtml(html, { limit: 200 });
+var trim = trimHTML(html, { limit: 200 });
 
 // returns object
 {

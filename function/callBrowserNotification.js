@@ -1,4 +1,4 @@
-function call_browser_notification(title, icon description, url, onClick, onClose) 
+function callBrowserNotification(title, icon, description, url, onClick, onClose)
 {
         if (!Notification)
         {
@@ -16,7 +16,7 @@ function call_browser_notification(title, icon description, url, onClick, onClos
             var notification = new Notification(title,
             {
                 icon: icon,
-                body: description,
+                body: description
             });
  
         // Remove the notification from Notification Center when clicked.

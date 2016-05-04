@@ -1,10 +1,10 @@
-var arr = ['apple','orange','pear'];
+// var arr = ['apple','orange','pear'];
 
 
 // string (keyword), array to search
-function in_array(search, arr)
+function inArray(search, arr)
 {
-    if(arr.indexOf(search) != -1)
+    if (arr.indexOf(search) != -1)
     {
         return true;
     }
