@@ -1,4 +1,4 @@
-function is_reserved_keyword(word_to_check)
+function isReservedKeyword(word_to_check)
 {
     var reserved_word = false;
     
@@ -16,3 +16,4 @@ function is_reserved_keyword(word_to_check)
     
     return reserved_word;
 }
+
