@@ -171,7 +171,6 @@ function loadScript(url, callback)
 
 var TJS = TJS || {};
 var bootloaders = [];
-var includes = [];
 
 TJS.import = function (libary, version)
 {
@@ -206,7 +205,11 @@ TJS.services = function ()
 
 TJS.include = function ()
 {
-    includes = arguments;
+    for (var i = 0; i < arguments.length; i++)
+    {
+        // str replace and remove 'http:, https:, //
+        load('//'+window.location.hostname+'/core/'+arguments[i]+'.js');
+    }
 }
 
 var dom = document.implementation.createDocument('http://www.w3.org/1999/xhtml', 'html', null);
