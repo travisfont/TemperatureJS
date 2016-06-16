@@ -230,6 +230,6 @@ if (bootloaders.length > 0)
 // set timeout is needed because document.body is created after the current continuation finishes
 setTimeout(function ()
 {
-    loadScript('initizer.js');
+    loadScript('initializer.js');
     loadScript('routes.js', main);
 }, 0);
