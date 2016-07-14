@@ -147,6 +147,23 @@ function load(url)
     ajax.send(null);
 }
 
+function importLoader(path)
+{
+    var head = document.getElementsByTagName('head')[0];
+    var script = document.createElement('script');
+
+    script.type = 'text/javascript';
+    script.src = path;
+    //script.async = true;
+
+    head.appendChild(script);
+
+    console.log("library imported: ", path);
+}
+
+// TODO: load script at the bottom:
+// http://stackoverflow.com/questions/7675909/how-to-insert-javascript-code-in-the-body-instead-of-head-in-greasemonkey
+// http://stackoverflow.com/questions/436411/where-is-the-best-place-to-put-script-tags-in-html-markup
 function loadScript(url, callback)
 {
     // Adding the script tag to the head as suggested before
@@ -187,11 +204,12 @@ TJS.import = function (libary, version)
             break;
         case 'jQuery':
             lib = LIBRARY_PATH + 'plugins/jquery.js';
-
+        default:
+            lib = libary;
     }
 
-    bootloaders.push(lib);
-    load(lib);
+    //load(lib);
+    importLoader(lib);
 };
 
 TJS.services = function ()
@@ -201,7 +219,7 @@ TJS.services = function ()
         // str replace and remove 'http:, https:, //
         load('//'+arguments[i]);
     }
-}
+};
 
 TJS.include = function ()
 {
@@ -210,7 +228,86 @@ TJS.include = function ()
         // str replace and remove 'http:, https:, //
         load('//'+window.location.hostname+'/core/'+arguments[i]+'.js');
     }
+};
+
+function _init()
+{
+    if (bootloaders.length > 0)
+    {
+        console.log('bootloaders starts');
+        for (i = 0; i < bootloaders.length; i++)
+        {
+            load(bootloaders[i]);
+        }
+    }
 }
+
+TJS.load = function (file, onload)
+{
+    var firstScript = document.getElementsByTagName('script')[0],
+        js = document.createElement('script');
+    js.src = file;
+    js.onload = function ()
+    {
+        onload();
+    };
+    firstScript.parentNode.insertBefore(js, firstScript);
+};
+
+TJS.loadAfterDOM = function (file, onload)
+{
+    var _script = document.createElement('script');
+    _script.onload = function () {
+        onload();
+    };
+    _script.onreadystatechange = function () {
+        if (this.readyState == 'complete') onload();
+    };
+    _script.src = file;
+    document.getElementsByTagName('head')[0].appendChild(_script);
+};
+
+TJS.loadBeforeDOM = function (file, fn)
+{
+    var _script = document.createElement('script');
+        _script.src = file;
+    document.getElementsByTagName('head')[0].appendChild(_script);
+
+    if (document.readyState != 'loading'){
+        fn();
+    } else {
+        document.addEventListener('DOMContentLoaded', fn);
+    }
+};
+
+TJS.loadAfterBody = function (script, url)
+{
+    var scriptNode = document.createElement('script');  // Create a script Element
+    scriptNode.setAttribute('type', "text/javascript"); // Set the Element's `type` attribute.
+
+    if (script !== undefined && script !== null)
+    {
+        if (typeof script === 'function')
+        {
+            var scriptcode = script();
+        }
+        else
+        {
+            var scriptcode = script;
+        }
+
+        scriptNode.appendChild(document.createTextNode(scriptcode));
+    }
+    if (url !== undefined && url !== null) {
+        scriptNode.setAttribute('src', url);
+    }
+
+    //scriptNode.defer = true;
+    //scriptNode.async = true;
+    // Link to the script
+    // Place the script Element before the first child of the body.
+    document.body.insertBefore(scriptNode , document.body.lastChild);
+};
 
 var dom = document.implementation.createDocument('http://www.w3.org/1999/xhtml', 'html', null);
     dom.documentElement.setAttributeNS('http://www.w3.org/XML/1998/namespace', 'xml:lang', 'en');
@@ -219,17 +316,14 @@ var dom = document.implementation.createDocument('http://www.w3.org/1999/xhtml',
 var body = dom.createElementNS('http://www.w3.org/1999/xhtml', 'body');
            dom.documentElement.appendChild(body);
 
-if (bootloaders.length > 0)
-{
-    for (i = 0; i < bootloaders.length; i++)
-    {
-        load(bootloaders[i]);
-    }
-}
+var _href = window.location.href.split('#');
 
 // set timeout is needed because document.body is created after the current continuation finishes
 setTimeout(function ()
 {
-    loadScript('initializer.js');
-    loadScript('routes.js', main);
+    loadScript('initializer.js', _init);
+    loadScript('routes.js');
 }, 0);
+
+
+
