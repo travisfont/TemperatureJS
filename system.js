@@ -280,7 +280,7 @@ TJS.loadBeforeDOM = function (file, fn)
     }
 };
 
-TJS.loadAfterBody = function (script, url)
+TJS.onload = function (script, url)
 {
     var scriptNode = document.createElement('script');  // Create a script Element
     scriptNode.setAttribute('type', "text/javascript"); // Set the Element's `type` attribute.
@@ -309,6 +309,7 @@ TJS.loadAfterBody = function (script, url)
     document.body.insertBefore(scriptNode , document.body.lastChild);
 };
 
+
 var dom = document.implementation.createDocument('http://www.w3.org/1999/xhtml', 'html', null);
     dom.documentElement.setAttributeNS('http://www.w3.org/XML/1998/namespace', 'xml:lang', 'en');
 
@@ -316,6 +317,8 @@ var dom = document.implementation.createDocument('http://www.w3.org/1999/xhtml',
 var body = dom.createElementNS('http://www.w3.org/1999/xhtml', 'body');
            dom.documentElement.appendChild(body);
 
+
+console.log(window.location);
 var _href = window.location.href.split('#');
 
 // set timeout is needed because document.body is created after the current continuation finishes
