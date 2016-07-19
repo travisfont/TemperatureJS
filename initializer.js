@@ -7,7 +7,7 @@ var
 // 3rd party plugins to automatically load
 var bootloaders =
 [
-    LIBRARY_PATH + 'plugins/document.js'      // Extension of DOM library
+    LIBRARY_PATH + 'plugins/document.js'     // Extension of DOM library
     //LIBRARY_PATH + 'plugins/crypto-js/hmac-sha1.js',      // CryptoJS 3.1
     //LIBRARY_PATH + 'plugins/crypto-js/enc-base64-min.js'  // CryptoJS 3.1
 ];
