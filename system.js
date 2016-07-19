@@ -108,6 +108,8 @@
         }
     }
 
+    //console.log(url);
+
     // Listen on hash change:
     this.addEventListener('hashchange', router);
 
@@ -116,7 +118,11 @@
 
     // Expose the route register function:
     this.route = route;
+
 })();
+
+// https://gist.github.com/joakimbeng/7918297
+// https://github.com/visionmedia/page.js
 
 function load(url)
 {
@@ -191,6 +197,7 @@ var bootloaders = [];
 
 TJS.import = function (libary, version)
 {
+    var lib;
     switch (libary)
     {
         case 'Strings':
@@ -235,7 +242,7 @@ function _init()
     if (bootloaders.length > 0)
     {
         console.log('bootloaders starts');
-        for (i = 0; i < bootloaders.length; i++)
+        for (var i = 0; i < bootloaders.length; i++)
         {
             load(bootloaders[i]);
         }
@@ -318,14 +325,22 @@ var body = dom.createElementNS('http://www.w3.org/1999/xhtml', 'body');
            dom.documentElement.appendChild(body);
 
 
-console.log(window.location);
-var _href = window.location.href.split('#');
+if (window.location.hash.replace('#/', '') === null || window.location.hash.replace('#/', '').length == 0)
+{
+    var _href = window.location.href.split('#');
+}
 
 // set timeout is needed because document.body is created after the current continuation finishes
 setTimeout(function ()
 {
     loadScript('initializer.js', _init);
-    loadScript('routes.js');
+    loadScript('routes.js', function ()
+    {
+        if (typeof _href !== 'undefined')
+        {
+            window.location = _href[0]+'#/';
+        }
+    });
 }, 0);
 
 
