@@ -38,6 +38,13 @@ var ExtMath = {
 
         return memo[num] = this.fibonacci(num - 1, memo) + this.fibonacci(num - 2, memo);
     }
-
+    
+    formatAsMoney: function (mnt)
+    {
+        mnt -= 0;
+        mnt = (Math.round(mnt*100))/100;
+        
+        return (mnt == Math.floor(mnt)) ? mnt + '.00' : ((mnt*10 == Math.floor(mnt*10)) ? mnt + '0' : mnt);
+    }
 };
 
