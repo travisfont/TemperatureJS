@@ -1,0 +1,1 @@
+function ltrim(a,b){b=b?(b+"").replace(/([\[\]\(\)\.\?\/\*\{\}\+\$\^:])/g,"$1"):" \\s ";var c=new RegExp("^["+b+"]+","g");return(a+"").replace(c,"")
