@@ -21,6 +21,10 @@ Core Packages:
 
 ----------------------------
 
+Classes
+
+- XMLHttp
+
 Usage of packages:
 
 ```javascript
